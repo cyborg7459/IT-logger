@@ -13,4 +13,43 @@
     font-family: 'Poiret One', cursive;
     width: 98%;
     max-width: 1400px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media(max-width: 1400px) {
+        font-size: 0.81rem;
+    }
+
+    #links {
+        display: flex;
+    }
+
+    a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: black;
+        font-weight: 600;
+        margin-right: 25px;
+
+        @media(max-width: 1400px) {
+            font-size: 1.2rem!important;
+            margin-right: 15px;
+        }
+
+        &:hover {
+            color: black;
+        }
+    }
+
+    img {
+        height: 25px;
+        margin-right: 10px;
+
+        @media(max-width: 1400px) {
+            height: 20px;
+        }
+    }
 }

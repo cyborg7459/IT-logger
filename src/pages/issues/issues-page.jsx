@@ -2,7 +2,6 @@ import React from 'react';
 import './issues-style.scss';
 
 import Card from '../../components/card/card-component';
-import plus from '../../gallery/plus.png';
 
 class IssuesPage extends React.Component {
     
