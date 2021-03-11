@@ -39,7 +39,7 @@ class IssuesPage extends React.Component {
                         )
                     }) }
                 </div>
-                <div id="add-btn">
+                <div id="add-log" className='add-btn'>
                     Add new log
                 </div>
             </div>

@@ -5,28 +5,28 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-
-    #add-btn {
-        padding: 12px;
-        text-align: center;
-        width: 90%;
-        max-width: 1000px;
-        box-shadow: 0px 3px 7px rgba(0,0,0,0.32);
-        background-color: #51c25c;
-        border-radius: 7px;
-        margin-top: 20px;
-        color: white;
-        font-size: 1.4rem;
-        cursor: pointer;
-        transition: all 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
-
-        &:hover {
-            transform: scale(1.02);
-        }
-    }
-
+    
     .issues-list {
         width: 90%;
         max-width: 1000px;
+    }
+}
+
+.add-btn {
+    padding: 12px;
+    text-align: center;
+    width: 90%;
+    max-width: 1000px;
+    box-shadow: 0px 3px 7px rgba(0,0,0,0.32);
+    background-color: #51c25c;
+    border-radius: 7px;
+    margin-top: 20px;
+    color: white;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &:hover {
+        transform: scale(1.02);
     }
 }
