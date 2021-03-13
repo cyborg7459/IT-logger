@@ -6,8 +6,13 @@ import { getIssuesList } from '../../redux/issue/issue.selector';
 
 import './issues-style.scss';
 import Card from '../../components/card/card-component';
+import Overlay from '../../components/overlay/overlay-component';
 
 class IssuesPage extends React.Component {
+
+    state = {
+        isOverlayVisible : false
+    }
 
     addIssueToState = () => {
         let issue =  {
@@ -31,6 +36,9 @@ class IssuesPage extends React.Component {
     render() {
         return (
             <div className="issues-page-container">
+                {
+                    this.state.isOverlayVisible ? <Overlay /> : null
+                }
                 <div className="issues-list">
                     {
                         this.props.issues.length === 0 ?

@@ -5,8 +5,13 @@ import { v4 as uuidv4 } from 'uuid';
 import './users-style.scss';
 import delImg from '../../gallery/delete.png';
 import { addUser, deleteUser } from '../../redux/user/user-actions';
+import Overlay from '../../components/overlay/overlay-component';
 
 class UsersPage extends React.Component {
+
+    state = {
+        isOverlayVisible : false
+    }
 
     addUserToState = () => {
         const user = {
@@ -24,6 +29,9 @@ class UsersPage extends React.Component {
     render() {
         return (
             <div className="users-page-container">
+                {
+                    this.state.isOverlayVisible ? <Overlay /> : null
+                }
                 <div className="users-list">
                     {
                         this.props.users.userList.length === 0 
