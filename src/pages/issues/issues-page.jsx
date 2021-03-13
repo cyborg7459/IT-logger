@@ -12,8 +12,8 @@ import AddIssueForm from '../../components/forms/add-issue-form';
 class IssuesPage extends React.Component {
 
     state = {
-        isOverlayVisible : true,
-        showForm : true
+        isOverlayVisible : false,
+        showForm : false
     }
 
     addIssueToState = () => {
@@ -35,6 +35,20 @@ class IssuesPage extends React.Component {
         this.props.deleteIssue(id);
     }
 
+    showForm = () => {
+        this.setState({
+            isOverlayVisible : true,
+            showForm : true
+        })
+    }
+
+    hideForm = () => {
+        this.setState({
+            isOverlayVisible : false,
+            showForm : false
+        })
+    }
+
     render() {
         return (
             <div className="issues-page-container">
@@ -42,7 +56,7 @@ class IssuesPage extends React.Component {
                     this.state.isOverlayVisible ? <Overlay /> : null
                 }
                 {
-                    this.state.showForm ? <AddIssueForm /> : null
+                    this.state.showForm ? <AddIssueForm hideForm = {this.hideForm} /> : null
                 }
                 <div className="issues-list">
                     {
@@ -62,7 +76,7 @@ class IssuesPage extends React.Component {
                         })
                     }
                 </div>
-                <div onClick={() => {this.addIssueToState()}} id="add-log" className='btn add-btn'>
+                <div onClick={() => {this.showForm()}} id="add-log" className='btn add-btn'>
                     Add new log
                 </div>
                 <div onClick={() => {this.deleteAllIssuesFromState()}} className='btn delete-btn'>
