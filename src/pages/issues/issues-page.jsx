@@ -33,7 +33,7 @@ class IssuesPage extends React.Component {
                 <div className="issues-list">
                     {
                         this.props.issues.issueList.length === 0 ?
-                            <h1 style={{textAlign : 'center', marginBottom : '15px'}} >Currently no logs</h1> 
+                            <h1 className='size19' style={{textAlign : 'center', marginBottom : '35px', fontWeight: '200'}}>No logs to display at the moment .....</h1> 
                             : 
                             this.props.issues.issueList.map((issue, idx) => {
                             return (
