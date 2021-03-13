@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { addIsssue, deleteAllIssues, deleteIssue } from '../../redux/issue/issue.actions';
+import { getIssuesList } from '../../redux/issue/issue.selector';
 
 import './issues-style.scss';
 import Card from '../../components/card/card-component';
@@ -60,7 +61,7 @@ class IssuesPage extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    issues : state.issues
+    issues : getIssuesList(state)
 })
 
 const mapDispatchToProps = dispatch => ({
