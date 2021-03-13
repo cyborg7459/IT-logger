@@ -6,11 +6,13 @@ import './users-style.scss';
 import delImg from '../../gallery/delete.png';
 import { addUser, deleteUser } from '../../redux/user/user-actions';
 import Overlay from '../../components/overlay/overlay-component';
+import AddUserForm from '../../components/forms/add-user-form';
 
 class UsersPage extends React.Component {
 
     state = {
-        isOverlayVisible : false
+        isOverlayVisible : false,
+        showForm : false
     }
 
     addUserToState = () => {
@@ -26,11 +28,28 @@ class UsersPage extends React.Component {
         this.props.deleteUser(id);
     }
 
+    showForm = () => {
+        this.setState({
+            isOverlayVisible : true,
+            showForm : true
+        })
+    }
+
+    hideForm = () => {
+        this.setState({
+            isOverlayVisible : false,
+            showForm : false
+        })
+    }
+
     render() {
         return (
             <div className="users-page-container">
                 {
                     this.state.isOverlayVisible ? <Overlay /> : null
+                }
+                {
+                    this.state.showForm ? <AddUserForm hideForm = {this.hideForm} /> : null
                 }
                 <div className="users-list">
                     {
@@ -57,7 +76,7 @@ class UsersPage extends React.Component {
                             )
                         })
                     }
-                    <div onClick={() => {this.addUserToState()}} className='btn add-btn' id="add-user">Add user</div>
+                    <div onClick={this.showForm} className='btn add-btn' id="add-user">Add user</div>
                 </div>
             </div>
         )

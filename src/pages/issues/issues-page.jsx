@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { addIsssue, deleteAllIssues, deleteIssue } from '../../redux/issue/issue.actions';
+import { deleteAllIssues, deleteIssue } from '../../redux/issue/issue.actions';
 import { getIssuesList } from '../../redux/issue/issue.selector';
 
 import './issues-style.scss';
@@ -92,7 +92,6 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    addIsssue : issue => dispatch(addIsssue(issue)),
     deleteIssue : id => dispatch(deleteIssue(id)),
     deleteAllIssues : () => dispatch(deleteAllIssues())
 })

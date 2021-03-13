@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addIsssue } from '../../redux/issue/issue.actions';
+import { v4 as uuidv4} from 'uuid';
 
+import { addIsssue } from '../../redux/issue/issue.actions';
 import './form-styles.scss';
 
 class AddIssueForm extends React.Component {
@@ -12,9 +13,13 @@ class AddIssueForm extends React.Component {
             return alert('Please fill the title for the log');
         }
         const userList = document.getElementById('user-log');
+        if(userList.selectedIndex === 0) {
+            return alert('No user is selected !!! If no user available, then first create a new user')
+        }
         const user = userList.options[userList.selectedIndex].text;
         const needsAttention = document.getElementById('attentionVal').checked;
         const issue = {
+            id : uuidv4(),
             title,
             user,
             needsAttention,
@@ -31,7 +36,8 @@ class AddIssueForm extends React.Component {
                 <div className="form-inner">
                     <h1>Add a new log <span onClick={() => {this.props.hideForm()}}> &times; </span> </h1>
                     <input placeholder='Enter title for log' className='form-control input-box' type="text" id="log-title"/>
-                    <select className='form-control' id='user-log'>
+                    <select placeholder='Select user' className='form-control' id='user-log'>
+                        <option>Select user</option>
                         {
                             this.props.users.map((user,idx) => {
                                 return (
