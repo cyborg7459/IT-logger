@@ -1,50 +1,59 @@
 import React from 'react';
-import './issues-style.scss';
+import { connect } from 'react-redux';
+import { addIsssue, deleteAllIssues } from '../../redux/issue/issue.actions';
 
+import './issues-style.scss';
 import Card from '../../components/card/card-component';
 
 class IssuesPage extends React.Component {
-    
-    state = {
-        issues : [{
-            title : 'Changed network card in server 007',
-            user : 'Sam Smith',
-            updated : Date.now(),
-            needsAttention : false
-        }, {
-            title : '1122 wireless down',
-            user : 'Sara Wilson',
-            updated : Date.now(),
-            needsAttention : true
-        }, {
-            title : 'Changed network card in server 007',
-            user : 'Sam Smith',
-            updated : Date.now(),
-            needsAttention : true
-        }, {
-            title : '1122 wireless down',
+
+    addIssueToState = () => {
+        let issue =  {
+            title : '1122 wireless up and running',
             user : 'Sara Wilson',
             updated : Date.now(),
             needsAttention : false
-        }]
+        }
+        this.props.addIsssue(issue);
+    }
+
+    deleteAllIssuesFromState = () => {
+        this.props.deleteAllIssues();
     }
 
     render() {
         return (
             <div className="issues-page-container">
                 <div className="issues-list">
-                    { this.state.issues.map((issue, idx) => {
-                        return (
-                            <Card key={idx} number={idx+1} issue={issue} />
-                        )
-                    }) }
+                    {
+                        this.props.issues.issueList.length === 0 ?
+                            <h1 style={{textAlign : 'center', marginBottom : '15px'}} >Currently no issues</h1> 
+                            : 
+                            this.props.issues.issueList.map((issue, idx) => {
+                            return (
+                                <Card key={idx} number={idx+1} issue={issue} />
+                            )
+                        })
+                    }
                 </div>
-                <div id="add-log" className='add-btn'>
+                <div onClick={() => {this.addIssueToState()}} id="add-log" className='btn add-btn'>
                     Add new log
+                </div>
+                <div onClick={() => {this.deleteAllIssuesFromState()}} className='btn delete-btn'>
+                    Delete all logs
                 </div>
             </div>
         )
     }
 }
 
-export default IssuesPage;
+const mapStateToProps = state => ({
+    issues : state.issues
+})
+
+const mapDispatchToProps = dispatch => ({
+    addIsssue : issue => dispatch(addIsssue(issue)),
+    deleteAllIssues : () => dispatch(deleteAllIssues())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(IssuesPage);
