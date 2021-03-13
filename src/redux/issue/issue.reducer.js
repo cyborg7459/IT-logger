@@ -1,27 +1,7 @@
 import {IssueActionTypes} from './issue.types';
 
 const INITIAL_STATE = {
-    issueList : [{
-        title : 'Changed network card in server 007',
-        user : 'Sam Smith',
-        updated : Date.now(),
-        needsAttention : false
-    }, {
-        title : '1122 wireless down',
-        user : 'Sara Wilson',
-        updated : Date.now(),
-        needsAttention : true
-    }, {
-        title : 'Changed network card in server 007',
-        user : 'Sam Smith',
-        updated : Date.now(),
-        needsAttention : true
-    }, {
-        title : '1122 wireless down',
-        user : 'Sara Wilson',
-        updated : Date.now(),
-        needsAttention : false
-    }]
+    issueList : []
 }
 
 const issueReducer = (state = INITIAL_STATE, action) => {
