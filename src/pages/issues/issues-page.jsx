@@ -33,10 +33,10 @@ class IssuesPage extends React.Component {
             <div className="issues-page-container">
                 <div className="issues-list">
                     {
-                        this.props.issues.issueList.length === 0 ?
+                        this.props.issues.length === 0 ?
                             <h1 className='size19' style={{textAlign : 'center', marginBottom : '35px', fontWeight: '200'}}>No logs to display at the moment .....</h1> 
                             : 
-                            this.props.issues.issueList.map((issue, idx) => {
+                            this.props.issues.map((issue, idx) => {
                             return (
                                 <Card 
                                     key={issue.id} 

@@ -1,18 +1,20 @@
 import { UserActionTypes } from './user-types';
 
 const INITIAL_STATE = {
-    users : []
+    userList : [{name : 'Shreuash'}]
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
     switch(action.type) {
         case UserActionTypes.ADD_USER:
-            state.users.push(action.payload);
-            return state;
+            return {
+                ...state, 
+                userList : [...state.userList, action.payload]
+            }
         case UserActionTypes.DELETE_USER:
             return {
                 ...state,
-                users : state.users.filter(user => user.id !== action.payload)
+                userList : state.userList.filter(user => user.id !== action.payload)
             }
         default:
             return state;

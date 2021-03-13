@@ -7,9 +7,9 @@ const INITIAL_STATE = {
 const issueReducer = (state = INITIAL_STATE, action) => {
     switch(action.type) {
         case IssueActionTypes.ADD_ISSUE:
-            state.issueList.push(action.payload)
             return {
-                ...state
+                ...state,
+                issueList : [...state.issueList, action.payload]
             }
         case IssueActionTypes.DELETE_ISSUE:
             return {
