@@ -7,11 +7,13 @@ import { getIssuesList } from '../../redux/issue/issue.selector';
 import './issues-style.scss';
 import Card from '../../components/card/card-component';
 import Overlay from '../../components/overlay/overlay-component';
+import AddIssueForm from '../../components/forms/add-issue-form';
 
 class IssuesPage extends React.Component {
 
     state = {
-        isOverlayVisible : false
+        isOverlayVisible : true,
+        showForm : true
     }
 
     addIssueToState = () => {
@@ -38,6 +40,9 @@ class IssuesPage extends React.Component {
             <div className="issues-page-container">
                 {
                     this.state.isOverlayVisible ? <Overlay /> : null
+                }
+                {
+                    this.state.showForm ? <AddIssueForm /> : null
                 }
                 <div className="issues-list">
                     {
