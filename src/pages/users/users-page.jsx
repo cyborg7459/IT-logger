@@ -39,7 +39,7 @@ class UsersPage extends React.Component {
                             </div>
                         )
                     })}
-                    <div className='add-btn' id="add-user">Add user</div>
+                    <div className='btn add-btn' id="add-user">Add user</div>
                 </div>
             </div>
         )

@@ -24,6 +24,17 @@ class Card extends React.Component {
                 <div>
                     ID #{this.props.number} last updated by <b> {issue.user} </b> on {this.convertStampDate(issue.updated/1000)}
                 </div>
+                <div style={{marginTop : '10px'}}>
+                    <span 
+                        onClick={() => {
+                            this.props.deleteIssue(this.props.issueID);
+                        }} 
+                        className='size9 card-link' 
+                        style={{color : '#e34f34'}}
+                    >
+                             Delete log 
+                    </span>
+                </div>
             </div>
         )
     }

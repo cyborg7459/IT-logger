@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addIsssue, deleteAllIssues } from '../../redux/issue/issue.actions';
+import { v4 as uuidv4 } from 'uuid';
+import { addIsssue, deleteAllIssues, deleteIssue } from '../../redux/issue/issue.actions';
 
 import './issues-style.scss';
 import Card from '../../components/card/card-component';
@@ -9,6 +10,7 @@ class IssuesPage extends React.Component {
 
     addIssueToState = () => {
         let issue =  {
+            id : uuidv4(),
             title : '1122 wireless up and running',
             user : 'Sara Wilson',
             updated : Date.now(),
@@ -21,17 +23,27 @@ class IssuesPage extends React.Component {
         this.props.deleteAllIssues();
     }
 
+    deleteIssueFromState = id => {
+        this.props.deleteIssue(id);
+    }
+
     render() {
         return (
             <div className="issues-page-container">
                 <div className="issues-list">
                     {
                         this.props.issues.issueList.length === 0 ?
-                            <h1 style={{textAlign : 'center', marginBottom : '15px'}} >Currently no issues</h1> 
+                            <h1 style={{textAlign : 'center', marginBottom : '15px'}} >Currently no logs</h1> 
                             : 
                             this.props.issues.issueList.map((issue, idx) => {
                             return (
-                                <Card key={idx} number={idx+1} issue={issue} />
+                                <Card 
+                                    key={issue.id} 
+                                    deleteIssue={this.deleteIssueFromState} 
+                                    issueID={issue.id} 
+                                    number={idx+1} 
+                                    issue={issue} 
+                                />
                             )
                         })
                     }
@@ -53,6 +65,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     addIsssue : issue => dispatch(addIsssue(issue)),
+    deleteIssue : id => dispatch(deleteIssue(id)),
     deleteAllIssues : () => dispatch(deleteAllIssues())
 })
 
