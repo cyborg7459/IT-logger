@@ -34,7 +34,7 @@ class UsersPage extends React.Component {
                             }}>No users to display ....</h1>
                         : this.props.users.userList.map((user, idx) => {
                             return (
-                                <div>
+                                <div key={idx+1}>
                                     <h2> 
                                         <div>
                                             {user.name} 
