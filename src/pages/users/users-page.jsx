@@ -17,6 +17,10 @@ class UsersPage extends React.Component {
         this.props.addUser(user);
     }
 
+    deleteUserFromState = id => {
+        this.props.deleteUser(id);
+    }
+
     render() {
         return (
             <div className="users-page-container">
@@ -28,7 +32,7 @@ class UsersPage extends React.Component {
                                 textAlign: 'center',
                                 fontWeight: '200'
                             }}>No users to display ....</h1>
-                        : this.props.users.userList.map(user => {
+                        : this.props.users.userList.map((user, idx) => {
                             return (
                                 <div>
                                     <h2> 
@@ -36,7 +40,9 @@ class UsersPage extends React.Component {
                                             {user.name} 
                                             <span className='position'> | {user.position}</span>
                                         </div>
-                                        <img src={delImg} alt="delete"/>
+                                        <img onClick={() => {
+                                            this.deleteUserFromState(user.id)
+                                        }} src={delImg} alt="delete"/>
                                     </h2>
                                     <hr/>
                                 </div>
